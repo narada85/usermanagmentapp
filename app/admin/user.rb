@@ -3,7 +3,7 @@ ActiveAdmin.register User do
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
-permit_params :email, :name, :avatar, :password, :password_confirmation
+permit_params :email, :name, :avatar, :password, :password_confirmation, :bio
 #
 # or
 #
@@ -19,7 +19,7 @@ filter :name
 index do
   selectable_column
   id_column
-  column "College Logo" do |user|
+  column "User Avatar" do |user|
     image_tag(user.avatar.url, size: "100x100", alt: user.avatar.identifier)
   end
   column :name
@@ -38,6 +38,7 @@ show  do |user|
         end
         row :name
         row :email
+        row :bio
         row :created_at
         row :updated_at
       end
@@ -51,6 +52,7 @@ form do |f|
     f.input :email
     f.input :name
     f.input :avatar, as: :file, hint: image_tag(f.object.avatar_url, id: "img-preview", alt: "Avatar Image", width: "400", height: "300"), input_html: { onchange: "show_image_preview(this)"}
+    f.input :bio
     f.input :password
     f.input :password_confirmation
   end
