@@ -1,0 +1,12 @@
+.col-md-3.col-sm-6.hero-feature  
+  .thumbnail
+    =image_tag(user.avatar.url, size: "300x200", alt: user.name) if user.avatar
+    .caption
+      %h3
+        = user.name
+      %h4
+        = user.email
+      %p 
+        = truncate(user.bio, :length => 50)
+      %p
+        = link_to("More Info", single_user_page_path(:id =>user.id), :class =>"btn btn-default")

@@ -1,0 +1,35 @@
+= render :partial => 'nav'
+
+/ .container
+/ Page Content
+.container
+  / Product Item Heading
+  .row
+    .col-lg-12
+      %h1.page-header
+        User
+        %small 
+          = @user.name
+  / .row
+  
+  / Product Item Row
+  .row
+    .col-md-8
+      = image_tag(@user.avatar.url, width: "100%", height: "auto", alt: @user.name) if @user.avatar
+    .col-md-4
+      %h3 User Description
+      %p
+        = @user.name
+      %h3 User Details
+      %ul
+        %li 
+          = "Email: #{@user.email}"
+        %li 
+          = "Registered: #{@user.created_at}"
+
+  / .row
+    
+  %hr
+    
+  = render :partial => "footer"
+/ .container
