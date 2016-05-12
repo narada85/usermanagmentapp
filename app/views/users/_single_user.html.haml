@@ -1,6 +1,10 @@
 .col-md-3.col-sm-6.hero-feature  
   .thumbnail
-    =image_tag(user.avatar.url, size: "300x200", alt: user.name) if user.avatar
+    -if not user.avatar.blank?
+      =image_tag(user.avatar.url, size: "300x200", alt: user.name)
+    -else
+      =image_tag("no_image.jpg", size: "300x200", alt: "No Image")
+    
     .caption
       %h3
         = user.name

@@ -31,7 +31,11 @@ index do
   selectable_column
   id_column
   column "User Avatar" do |user|
-    image_tag(user.avatar.url, size: "100x100", alt: user.avatar.identifier)
+    if not user.avatar.blank?
+      image_tag(user.avatar.url, size: "100x100", alt: user.avatar.identifier)
+    else
+      image_tag("no_image.jpg", size: "100x100", alt:"No Image")
+    end
   end
   column :name
   column :email
@@ -45,7 +49,11 @@ show  do |user|
       attributes_table do
         row :id
         row "Avatar" do
-          image_tag(user.avatar.url, alt: user.avatar.identifier) if user.avatar
+          if not user.avatar.blank?
+            image_tag(user.avatar.url, alt: user.avatar.identifier) 
+          else
+            image_tag("no_image.jpg", alt:"No Image")
+          end
         end
         row :name
         row :email
