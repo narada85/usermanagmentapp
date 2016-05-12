@@ -24,5 +24,18 @@ ActiveAdmin.register AdminUser do
     end
     f.actions
   end
+  
+  show  do |user|
+    tabs do
+      tab 'Admin User Details' do
+        attributes_table do
+          row :id
+          row :email
+          row :created_at
+          row :updated_at
+        end
+      end
+    end
+  end
 
 end

@@ -16,6 +16,17 @@ permit_params :email, :name, :avatar, :password, :password_confirmation, :bio
 filter :email
 filter :name
 
+controller do
+  
+  def update
+    if params[:user][:password].blank?
+      params[:user].delete("password")
+      params[:user].delete("password_confirmation")
+    end
+    super
+  end
+end
+
 index do
   selectable_column
   id_column
